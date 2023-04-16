@@ -9,10 +9,10 @@ import {
 
 type ItemState = {
   items: Item[];
-  unpackedItems: any;
-  packedItems: any;
+  unpackedItems: Item[];
+  packedItems: Item[];
   add: (name: string) => void;
-  update: (id: string, updates: any) => void;
+  update: (id: string, updates: Omit<Partial<Item>, 'id'>) => void;
   remove: (id: string) => void;
   markAllAsUnpacked: () => void;
 };
@@ -28,7 +28,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setItems([...items, item]);
   };
 
-  const update = (id: string, updates: any) => {
+  const update = (id: string, updates: Omit<Partial<Item>, 'id'>) => {
     setItems(updateItem(items, id, updates));
   };
 
